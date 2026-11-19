@@ -38,8 +38,10 @@ Use this sequence for new projects or a substantial implementation slice. The [P
 
 - [ ] Inspect existing typography, colors, spacing, media, fonts, CSS, and JavaScript before proposing structural changes.
 - [ ] Verify asset loading at the intended editor/frontend layer.
+- [ ] Map one representative design/assembly canvas to exported block names, the target WordPress page or template owner, and its saved Gutenberg composition when appropriate.
 - [ ] Implement one representative content → block → composition/template → frontend path when appropriate.
 - [ ] Verify registration, context, relationships, fallbacks, empty states, and editor preview.
+- [ ] When WordPress page assembly is in scope, capture pre-change saved content, preserve editorial state, and verify saved block ordering/attributes/nesting via authenticated readback; mark raw structure unverified if only rendered HTML was accessible.
 
 **Gate:** representative behavior works through its intended layers before expansion.
 
