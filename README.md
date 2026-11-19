@@ -10,6 +10,8 @@ A community guide to building custom WordPress sites with Pinegrow and Codex, pl
 
 The guide describes one studio’s practical workflow and its limits; adapt it to your tools, ownership model, and project requirements. It does not grant access to Pinegrow, WordPress, MCP services, or specialist skills. Verify each connection and capability in your own environment.
 
+The workflow guide also documents how a non-exported Pinegrow design canvas can serve as a reference for mapping reusable blocks into editable Gutenberg page content. Its Tenda21 example records the observed source, export, and rendered-page evidence, while clearly marking the original page-assembly mechanism and complete saved block structure as unverified.
+
 ## What is included
 
 - Human-readable workflow and setup guidance
