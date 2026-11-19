@@ -119,6 +119,23 @@ Use Pinegrow to establish and refine the visual direction. Decide which elements
 
 Use Impeccable for relevant visual decisions. Use `seo-audit` or `ai-seo` only when their triggers apply. The skills supplement the project brief and do not override its source ownership or approval rules.
 
+### Design canvases as Gutenberg page assembly references
+
+A Pinegrow page can be a **design/assembly reference**, not an exported WordPress page or template. In this approach, the page depicts the intended *content-area composition* and declares or demonstrates the blocks that will later appear in WordPress. Pinegrow's block actions, editable properties, allowed inner blocks, and export rules determine the reusable units; they do **not** automatically create the corresponding WordPress page record.
+
+For projects following this approach, keep shared header and footer declarations in their separately owned theme templates or template parts, **not repeated inside every design canvas**. In our Tenda21 practice, omitting those copies avoids conflicting declarations during export. This is a project-proven safeguard, not a claim that every Pinegrow setup requires header/footer-free canvases.
+
+A repeatable process is:
+
+1. **Map the canvas:** identify its export status, section order, block roots, WordPress Smart Actions, editable attributes, nested/allowed blocks, and preview-only elements such as `cms-no-export`.
+2. **Confirm the blocks:** inspect generated `block.json`, editor/save/render code, registrations, and assets; verify the relevant files are installed in the active WordPress theme.
+3. **Identify the WordPress owner:** distinguish a page's Gutenberg `post_content` from a reusable pattern, a file-based FSE template, a template part, and a database-saved Site Editor override. Record the intended page template and which layer supplies the shared header/footer.
+4. **Inspect before changing content:** read the existing page and preserve a pre-change snapshot, editorial values, inner blocks, and media references. Choose a **supported and authorized** WordPress editing path for that site; connector access does not itself authorize a write.
+5. **Assemble and read back:** insert or update the approved block composition in the appropriate WordPress owner. After saving, read the authenticated raw Gutenberg structure or inspect the editor where available, including block names, attributes, ordering, nesting, and saved media. If only public rendered HTML is accessible, state that the saved serialization remains unverified.
+6. **Compare and revise carefully:** check the frontend within its assigned template, including header/footer, responsive behavior, and editor usability. On later design changes, compare the new canvas mapping with the saved WordPress structure before replacing anything; do not blindly overwrite editorial work or duplicate blocks.
+
+**Observed Tenda21 example — A Tenda:** `a-tenda.html` is marked `wp-template-no-export` and omits shared header/footer. Its hero declares `cms-block="tenda21-about-hero"` with editable `title` and rich-text `introduction`; its gallery declares `cms-block="tenda21-about-gallery"`, allows `core/image` inner blocks, and contains sample figures marked `cms-no-export`. Pinegrow-generated `tenda21/tenda21-about-hero` and `tenda21/tenda21-about-gallery` files are registered in the theme. The active files checked in the investigation matched their exported counterparts. The `page.html` template surrounds `wp:post-content` with header and footer parts. The published WordPress page (ID 448, slug `a-tenda`) visibly rendered the custom hero and shared navigation/footer. **The saved gallery's exact block tree and the original Codex page-assembly mechanism were not established**: public REST rendering does not expose authenticated raw block serialization, and the available Codex task history did not identify the operation that created the page. This is evidence for the source/export/runtime mapping, not proof of a particular assembly tool or an end-to-end automation.
+
 ### 4. Implement from the canonical source
 
 Codex works through the owner-appropriate tool path identified in the spec. Before editing, it checks Git state and reconciles Pinegrow's in-memory editor state with the canonical source. In our current connector, edits to live Pinegrow pages go through Pinegrow MCP's supported editor operations; local files and Git are used for inspection and for other code or documentation changes where project and tool instructions allow. Codex preserves existing work, edits the canonical source, and distinguishes source files from generated output.

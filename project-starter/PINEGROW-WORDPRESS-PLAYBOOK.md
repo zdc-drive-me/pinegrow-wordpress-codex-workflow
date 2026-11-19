@@ -24,6 +24,20 @@ Inspect the actual Pinegrow project files, actions, framework configuration, blo
 
 A reusable block supplies a reusable content or structure unit. A page composition arranges blocks. A WordPress Site Editor template or part determines a broader route or shared composition. Verify how the specific site connects these layers.
 
+### Assemble Gutenberg page content from a design canvas
+
+For projects using visual assembly canvases, explicitly map **design page → exported custom blocks → WordPress destination → saved Gutenberg content → rendered route**. The canvas may be marked no-export and still serve as a canonical composition reference; never infer a published WordPress page from the canvas filename.
+
+- Classify each canvas section as a custom block, nested/allowed core block, ordinary page content, pattern, template, or template part. Inspect Smart Actions, editable block properties, `InnerBlocks` constraints, and preview-only or `cms-no-export` markup.
+- If the project separates page content from its shell, keep shared header/footer declarations only in their canonical template/part sources. Duplicate copies in Tenda21's design canvases have caused export conflicts; verify each project's configuration rather than treating this as a universal Pinegrow restriction.
+- Verify block metadata, registrations, editor/save/render paths, and assets in both generated output and the active theme before attempting WordPress composition.
+- Identify whether the target is `post_content`, a pattern, a file-based FSE template, or a database-saved override; these have different owners and update semantics. Inspect current saved content and record a recoverable pre-change state.
+- Use only an actual supported, authorized WordPress editing path. Preserve existing block order, attributes, nested blocks, editorial content, media, and translation state as applicable. Avoid blind replacements or duplicate instantiation.
+- After saving, read back raw Gutenberg blocks through an authenticated, supported channel or inspect the editor. Verify frontend rendering and the template shell separately. Public REST `content.rendered` proves rendered output, **not** the complete saved block serialization. If raw readback is blocked, report the unverified layer.
+- For future revisions, diff the approved canvas composition against the **current saved** page before proposing changes. Document whether a change belongs in the reusable block definition, one page's attributes/content, or the FSE template/part.
+
+**Evidence boundary (Tenda21 A Tenda):** the no-export canvas, two generated block registrations, active-theme parity for inspected files, page template shell, published page ID 448, and rendered hero were observed. The saved gallery structure and the original Codex WordPress editing mechanism were **not** verified. Do not present an inferred API, serializer, or UI path as a completed step.
+
 ## 4. Prefer Pinegrow-native behavior
 
 When a Pinegrow WordPress Action, block feature, dynamic binding, template capability, or export mechanism reliably meets the requirement, prefer it over manual PHP, hardcoded URLs, or parallel custom implementations. Before custom code, identify the native feature, verify export-path support, and inspect generated output and runtime behavior. Document why custom code is needed when native support is unavailable, incompatible, or insufficient. A visible UI control alone does not prove support in every export mode.

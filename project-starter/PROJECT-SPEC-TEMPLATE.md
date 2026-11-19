@@ -54,6 +54,14 @@ For writes, record pre-state, isolated change, fresh read, rendered result, clea
 |---|---|---|---|---|
 |  |  |  |  |  |
 
+For canvas-to-WordPress assembly workflows, record the destination and readback separately from the visual reference. An example schema (fill with project facts, not inferred behavior):
+
+| Design canvas / export status | WordPress destination / assigned template | Blocks and editable/nested content | Assembly/update mechanism | Saved-block readback / frontend verification |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+Keep shared template parts distinct from page `post_content`. Record how pre-existing editorial content will be preserved and note explicitly if the assembly mechanism or raw saved serialization is unknown.
+
 ## 6. Content model
 
 For each post type or content model, document fields, ownership, validation, relationships, and empty states.
